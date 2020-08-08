@@ -1,0 +1,570 @@
+openapi: 3.0.0
+info:
+  x-skaffolder-id-project: 5f2e152a612fa03a2846be43
+  title: mapworkrs
+  description: You can obtain JWT token from login API
+  version: 0.1
+servers:
+  - url: http://localhost:3000/api
+    description: Local server for testing
+paths:
+  /login:
+    post:
+      x-skaffolder-ignore: true
+      summary: Login API
+      security: []
+      tags:
+        - Security
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+              example:
+                username: admin
+                password: 62f264d7ad826f02a8af714c0a54b197935b717656b80461686d450f7b3abde4c553541515de2052b9af70f710f0cd8a1a2d3f4d60aa72608d71a63a9a93c0f5
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+  /verifyToken:
+    post:
+      x-skaffolder-ignore: true
+      summary: Verify token API
+      security: []
+      tags:
+        - Security
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+  /changePassword:
+    post:
+      x-skaffolder-ignore: true
+      summary: Change password API
+      tags:
+        - Security
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                passwordNew:
+                  type: string
+                passwordOld:
+                  type: string
+      responses:
+        "200":
+          description: OK
+  "/user/{id}/changePassword":
+    post:
+      x-skaffolder-id: 5f2e152a612fa03a2846be50
+      x-skaffolder-name: changePassword
+      x-skaffolder-id-resource: 5f2e152a612fa03a2846be4d
+      x-skaffolder-resource: User
+      x-skaffolder-crudAction: 
+      x-skaffolder-crudType: 
+      x-skaffolder-description: Change password of user from admin
+      x-skaffolder-returnDesc: 
+      x-skaffolder-returnType: object
+      x-skaffolder-url: /{id}/changePassword
+      x-skaffolder-roles:
+        - 5f2e152a612fa03a2846be4f
+      summary: Change password of user from admin
+      tags:
+        - User
+      responses:
+        "200":
+          description: OK
+  /user:
+    post:
+      x-skaffolder-id: 5f2e152a612fa03a2846be54
+      x-skaffolder-name: create
+      x-skaffolder-id-resource: 5f2e152a612fa03a2846be4d
+      x-skaffolder-resource: User
+      x-skaffolder-crudAction: create
+      x-skaffolder-crudType: 
+      x-skaffolder-description: CRUD ACTION create
+      x-skaffolder-returnDesc: 
+      x-skaffolder-returnType: 
+      x-skaffolder-url: /
+      x-skaffolder-roles: []
+      summary: CRUD ACTION create
+      tags:
+        - User
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                mail:
+                  type: string
+                name:
+                  type: string
+                password:
+                  type: string
+                roles:
+                  type: string
+                surname:
+                  type: string
+                username:
+                  type: string
+    get:
+      x-skaffolder-id: 5f2e152a612fa03a2846be52
+      x-skaffolder-name: list
+      x-skaffolder-id-resource: 5f2e152a612fa03a2846be4d
+      x-skaffolder-resource: User
+      x-skaffolder-crudAction: list
+      x-skaffolder-crudType: 
+      x-skaffolder-description: CRUD ACTION list
+      x-skaffolder-returnDesc: 
+      x-skaffolder-returnType: 
+      x-skaffolder-url: /
+      x-skaffolder-roles: []
+      summary: CRUD ACTION list
+      tags:
+        - User
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/User"
+  "/user/{id}":
+    delete:
+      x-skaffolder-id: 5f2e152a612fa03a2846be51
+      x-skaffolder-name: delete
+      x-skaffolder-id-resource: 5f2e152a612fa03a2846be4d
+      x-skaffolder-resource: User
+      x-skaffolder-crudAction: delete
+      x-skaffolder-crudType: 
+      x-skaffolder-description: CRUD ACTION delete
+      x-skaffolder-returnDesc: 
+      x-skaffolder-returnType: 
+      x-skaffolder-url: /{id}
+      x-skaffolder-roles: []
+      summary: CRUD ACTION delete
+      tags:
+        - User
+      parameters:
+        - name: id
+          x-skaffolder-type: ObjectId
+          in: path
+          description: Id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+    get:
+      x-skaffolder-id: 5f2e152a612fa03a2846be55
+      x-skaffolder-name: get
+      x-skaffolder-id-resource: 5f2e152a612fa03a2846be4d
+      x-skaffolder-resource: User
+      x-skaffolder-crudAction: get
+      x-skaffolder-crudType: 
+      x-skaffolder-description: CRUD ACTION get
+      x-skaffolder-returnDesc: 
+      x-skaffolder-returnType: 
+      x-skaffolder-url: /{id}
+      x-skaffolder-roles: []
+      summary: CRUD ACTION get
+      tags:
+        - User
+      parameters:
+        - name: id
+          x-skaffolder-type: ObjectId
+          in: path
+          description: Id resource
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+    post:
+      x-skaffolder-id: 5f2e152a612fa03a2846be53
+      x-skaffolder-name: update
+      x-skaffolder-id-resource: 5f2e152a612fa03a2846be4d
+      x-skaffolder-resource: User
+      x-skaffolder-crudAction: update
+      x-skaffolder-crudType: 
+      x-skaffolder-description: CRUD ACTION update
+      x-skaffolder-returnDesc: 
+      x-skaffolder-returnType: 
+      x-skaffolder-url: /{id}
+      x-skaffolder-roles: []
+      summary: CRUD ACTION update
+      tags:
+        - User
+      parameters:
+        - name: id
+          x-skaffolder-type: ObjectId
+          in: path
+          description: Id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+  /map_info:
+    post:
+      x-skaffolder-id: 5f2e1a48612fa03a2846bf13
+      x-skaffolder-name: create
+      x-skaffolder-id-resource: 5f2e18fe612fa03a2846beff
+      x-skaffolder-resource: map_info
+      x-skaffolder-crudAction: create
+      x-skaffolder-crudType: 
+      x-skaffolder-description: CRUD ACTION create
+      x-skaffolder-returnDesc: 
+      x-skaffolder-returnType: 
+      x-skaffolder-url: /
+      x-skaffolder-roles: []
+      summary: CRUD ACTION create
+      tags:
+        - map_info
+      parameters:
+        - name: obj
+          x-skaffolder-type: map_info
+          in: path
+          description: Object to insert
+          required: true
+          schema:
+            type: map_info
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/map_info"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                c_lang:
+                  type: string
+                c_long:
+                  type: string
+                cre_date:
+                  type: integer
+                cre_user:
+                  type: string
+                e_lang:
+                  type: string
+                e_long:
+                  type: string
+                map_base:
+                  type: string
+                map_bld_co:
+                  type: string
+                map_dist:
+                  type: string
+                map_input_date:
+                  type: integer
+                map_memo:
+                  type: string
+                map_name:
+                  type: string
+                map_sppy_user:
+                  type: string
+                mapid:
+                  type: string
+                mobile_table:
+                  type: string
+                s_lang:
+                  type: string
+                s_long:
+                  type: string
+                url:
+                  type: string
+                ver:
+                  type: string
+security:
+  - bearerAuth: []
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    User:
+      x-skaffolder-id: 5f2e152a612fa03a2846be4d
+      x-skaffolder-id-db: 5f2e152a612fa03a2846be44
+      x-skaffolder-id-entity: 5f2e152a612fa03a2846be45
+      x-skaffolder-url: /user
+      x-skaffolder-type: User
+      properties:
+        _id:
+          type: string
+          x-skaffolder-required: true
+        mail:
+          type: string
+          x-skaffolder-id-attr: 5f2e152a612fa03a2846be48
+          x-skaffolder-type: String
+        name:
+          type: string
+          x-skaffolder-id-attr: 5f2e152a612fa03a2846be49
+          x-skaffolder-type: String
+        password:
+          type: string
+          x-skaffolder-id-attr: 5f2e152a612fa03a2846be47
+          x-skaffolder-type: String
+          x-skaffolder-required: true
+        roles:
+          type: string
+          x-skaffolder-id-attr: 5f2e152a612fa03a2846be4b
+          x-skaffolder-type: String
+        surname:
+          type: string
+          x-skaffolder-id-attr: 5f2e152a612fa03a2846be4a
+          x-skaffolder-type: String
+        username:
+          type: string
+          x-skaffolder-id-attr: 5f2e152a612fa03a2846be46
+          x-skaffolder-type: String
+          x-skaffolder-required: true
+      x-skaffolder-relations: 
+      required:
+        - _id
+        - password
+        - username
+    map_detail:
+      x-skaffolder-id: 5f2e1a03612fa03a2846bf11
+      x-skaffolder-id-db: 5f2e152a612fa03a2846be44
+      x-skaffolder-id-entity: 5f2e1a03612fa03a2846bf02
+      x-skaffolder-url: /map_detail
+      properties:
+        _id:
+          type: string
+          x-skaffolder-required: true
+        add_layer1:
+          type: string
+          x-skaffolder-id-attr: 5f2e1a03612fa03a2846bf0e
+          x-skaffolder-type: String
+        add_layer2:
+          type: string
+          x-skaffolder-id-attr: 5f2e1a03612fa03a2846bf0f
+          x-skaffolder-type: String
+        add_layer3:
+          type: string
+          x-skaffolder-id-attr: 5f2e1a03612fa03a2846bf10
+          x-skaffolder-type: String
+        base_file:
+          type: string
+          x-skaffolder-id-attr: 5f2e1a03612fa03a2846bf06
+          x-skaffolder-type: String
+        base_map:
+          type: string
+          x-skaffolder-id-attr: 5f2e1a03612fa03a2846bf05
+          x-skaffolder-type: String
+        input_user:
+          type: string
+          x-skaffolder-id-attr: 5f2e1a03612fa03a2846bf0a
+          x-skaffolder-type: String
+        map_box:
+          type: string
+          x-skaffolder-id-attr: 5f2e1a03612fa03a2846bf0d
+          x-skaffolder-type: String
+        map_id:
+          type: string
+          x-skaffolder-id-attr: 5f2e1a03612fa03a2846bf03
+          x-skaffolder-type: String
+        map_line:
+          type: string
+          x-skaffolder-id-attr: 5f2e1a03612fa03a2846bf0c
+          x-skaffolder-type: String
+        map_name:
+          type: string
+          x-skaffolder-id-attr: 5f2e1a03612fa03a2846bf04
+          x-skaffolder-type: String
+        map_txt:
+          type: string
+          x-skaffolder-id-attr: 5f2e1a03612fa03a2846bf0b
+          x-skaffolder-type: String
+        map_type:
+          type: string
+          x-skaffolder-id-attr: 5f2e1a03612fa03a2846bf07
+          x-skaffolder-type: String
+        update_date:
+          type: integer
+          x-skaffolder-id-attr: 5f2e1a03612fa03a2846bf08
+          x-skaffolder-type: Date
+        update_res:
+          type: string
+          x-skaffolder-id-attr: 5f2e1a03612fa03a2846bf09
+          x-skaffolder-type: String
+      x-skaffolder-relations: 
+      required:
+        - _id
+    map_info:
+      x-skaffolder-id: 5f2e18fe612fa03a2846beff
+      x-skaffolder-id-db: 5f2e152a612fa03a2846be44
+      x-skaffolder-id-entity: 5f2e18fd612fa03a2846beeb
+      x-skaffolder-url: /map_info
+      properties:
+        _id:
+          type: string
+          x-skaffolder-required: true
+        c_lang:
+          type: string
+          x-skaffolder-id-attr: 5f2e18fd612fa03a2846befd
+          x-skaffolder-type: String
+        c_long:
+          type: string
+          x-skaffolder-id-attr: 5f2e18fd612fa03a2846befe
+          x-skaffolder-type: String
+        cre_date:
+          type: integer
+          x-skaffolder-id-attr: 5f2e18fd612fa03a2846bef0
+          x-skaffolder-type: Date
+        cre_user:
+          type: string
+          x-skaffolder-id-attr: 5f2e18fd612fa03a2846bef1
+          x-skaffolder-type: String
+        e_lang:
+          type: string
+          x-skaffolder-id-attr: 5f2e18fd612fa03a2846befb
+          x-skaffolder-type: String
+        e_long:
+          type: string
+          x-skaffolder-id-attr: 5f2e18fd612fa03a2846befc
+          x-skaffolder-type: String
+        map_base:
+          type: string
+          x-skaffolder-id-attr: 5f2e18fd612fa03a2846bef6
+          x-skaffolder-type: String
+        map_bld_co:
+          type: string
+          x-skaffolder-id-attr: 5f2e18fd612fa03a2846bef2
+          x-skaffolder-type: String
+        map_dist:
+          type: string
+          x-skaffolder-id-attr: 5f2e18fd612fa03a2846bef7
+          x-skaffolder-type: String
+        map_input_date:
+          type: integer
+          x-skaffolder-id-attr: 5f2e18fd612fa03a2846bef4
+          x-skaffolder-type: Date
+        map_memo:
+          type: string
+          x-skaffolder-id-attr: 5f2e18fd612fa03a2846bef5
+          x-skaffolder-type: String
+        map_name:
+          type: string
+          x-skaffolder-id-attr: 5f2e18fd612fa03a2846beee
+          x-skaffolder-type: String
+        map_sppy_user:
+          type: string
+          x-skaffolder-id-attr: 5f2e18fd612fa03a2846bef3
+          x-skaffolder-type: String
+        mapid:
+          type: string
+          x-skaffolder-id-attr: 5f2e18fd612fa03a2846beec
+          x-skaffolder-type: String
+        mobile_table:
+          type: string
+          x-skaffolder-id-attr: 5f2e18fd612fa03a2846beef
+          x-skaffolder-type: String
+        s_lang:
+          type: string
+          x-skaffolder-id-attr: 5f2e18fd612fa03a2846bef9
+          x-skaffolder-type: String
+        s_long:
+          type: string
+          x-skaffolder-id-attr: 5f2e18fd612fa03a2846befa
+          x-skaffolder-type: String
+        url:
+          type: string
+          x-skaffolder-id-attr: 5f2e18fd612fa03a2846bef8
+          x-skaffolder-type: String
+        ver:
+          type: string
+          x-skaffolder-id-attr: 5f2e18fd612fa03a2846beed
+          x-skaffolder-type: String
+      x-skaffolder-relations:
+        mar_rel:
+          x-skaffolder-id: 5f2e1a4c612fa03a2846bf15
+          x-skaffolder-type: 1:m
+          x-skaffolder-ent1: 5f2e18fd612fa03a2846beeb
+          x-skaffolder-ent2: 5f2e1a03612fa03a2846bf02
+      required:
+        - _id
+  x-skaffolder-db:
+    - x-skaffolder-id: 5f2e152a612fa03a2846be44
+      x-skaffolder-name: mapworkrs_db
+  x-skaffolder-page:
+    - x-skaffolder-id: 5f2e152a612fa03a2846be4c
+      x-skaffolder-name: Home
+      x-skaffolder-url: /home
+      x-skaffolder-template: 
+      x-skaffolder-resource: 
+      x-skaffolder-services: 
+      x-skaffolder-nesteds: 
+      x-skaffolder-links: 
+      x-skaffolder-roles: []
+    - x-skaffolder-id: 5f2e1a89612fa03a2846bf17
+      x-skaffolder-name: map_info
+      x-skaffolder-url: http//wwwmapworkrscom
+      x-skaffolder-template: 
+      x-skaffolder-resource: 
+      x-skaffolder-services:
+        - 5f2e1a48612fa03a2846bf13
+      x-skaffolder-nesteds: 
+      x-skaffolder-links:
+        - 5f2e152a612fa03a2846be4c
+  x-skaffolder-roles: 
+    - x-skaffolder-id: 5f2e152a612fa03a2846be4f
+      x-skaffolder-name: ADMIN
